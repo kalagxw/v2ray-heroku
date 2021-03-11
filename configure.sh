@@ -11,33 +11,8 @@ rm -rf /tmp/v2ray
 
 # xRay new configuration
 install -d /usr/local/etc/xray
-cat << EOF > /usr/local/etc/x2ray/config.json
-{
-	"inbounds": [{
-		"port": $PORT,
-		"protocol": "vmess",
-		"settings": {
-			"clients": [{
-				"id": "$UUID",
-				"alterId": 64
-			}],
-			"disableInsecureEncryption": true
-		},
-		"streamSettings": {
-			"network": "ws",
-			"wsSettings": {
-				"path": "/phpmyadmin"
-			},
-			"mux": {
-				"enabled": false,
-				"concurrency": 0
-			}
-		}
-	}],
-	"outbounds": [{
-		"protocol": "freedom"
-	}]
-}
+cat << EOF > /usr/local/etc/xray/config.json
+{"inbounds":[{"port":"$PORT","protocol":"vmess","settings":{"clients":[{"id":"$UUID","alterId":64}],"disableInsecureEncryption":true},"streamSettings":{"network":"ws","wsSettings":{"path":"/phpmyadmin"}},"mux":{"enabled":false,"concurrency":0}}],"outbounds":[{"protocol":"freedom"}]}
 EOF
 
 # Run xRay
